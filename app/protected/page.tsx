@@ -5,7 +5,7 @@ import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import { PaddleProvider } from '@/components/paddle/PaddleProvider';
-
+import { usePaddleContext } from '@/components/paddle/ContextConsumer'
 
 
 export default async function ProtectedPage() {
@@ -30,11 +30,13 @@ export default async function ProtectedPage() {
           user
         </div>
         
-              {Paddle && (
-            <PaddleProvider>
-              Render the components.
-            </PaddleProvider>
-          )}
+            (<PaddleProvider>
+              const paddle = usePaddleContext()
+
+if (paddle) {
+  //It's loaded do some stuff
+}
+            </PaddleProvider>)
         
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
