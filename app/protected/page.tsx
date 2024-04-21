@@ -4,8 +4,33 @@ import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
-import { PaddleProvider } from '@/components/paddle/PaddleProvider';
 
+import { initializePaddle, Paddle } from '@paddle/paddle-js';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+export function Checkout() {
+  // Create a local state to store Paddle instance
+  const [paddle, setPaddle] = useState<Paddle>();
+
+  // Download and initialize Paddle instance from CDN
+  useEffect(() => {
+    initializePaddle({ environment: 'sandbox', token: 'test_c2d0ccf5a6158d9dee25c51ce59 ' }).then(
+      (paddleInstance: Paddle | undefined) => {
+        if (paddleInstance) {
+          setPaddle(paddleInstance);
+        }
+      },
+    );
+  }, []);
+
+  // Callback to open a checkout
+  const openCheckout = () => {
+    paddle?.Checkout.open({
+      items: [{ priceId: 'pri_01hvkkzb0bzyszdt255f2kzhs6', quantity: 1 }],
+    });
+  };
+}
 
 
 
@@ -28,21 +53,6 @@ export default async function ProtectedPage() {
           This is a protected page that you can only see as an authenticated
           user
         </div>
-        
-        (<PaddleProvider>
-  
-  <button
-  onClick={() => {
-  Paddle.Checkout.open({
-  product: "pro_01htjgceg2d9wvmh2byctnrfb1",
-  });
-  }}
-  >
-  Buy
-  </button>
-  
-  </PaddleProvider>)
-        
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
             <DeployButton />
@@ -57,7 +67,6 @@ export default async function ProtectedPage() {
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
         </main>
       </div>
-      
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
           Powered by{" "}
@@ -73,4 +82,8 @@ export default async function ProtectedPage() {
       </footer>
     </div>
   );
+
+
+
+
 }
