@@ -24,8 +24,7 @@ export default async function ProtectedPage() {
     <div className="flex-1 w-full flex flex-col gap-10 items-center">
       <div className="w-full">
         <div className="py-6 font-bold bg-purple-950 text-center">
-          This is a protected page that you can only see as an authenticated
-          user
+          Authenticated User
         </div>
         
         
@@ -39,11 +38,16 @@ export default async function ProtectedPage() {
 
       <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
         <Header />
+
+
         <main className="flex-1 flex flex-col gap-6">
-        (<PaddleProvider>
-  PADDLE COMPONENT
-</PaddleProvider>)
-        </main>
+  <PaddleProvider>
+    <div className="flex justify-center items-center">
+      PADDLE COMPONENT
+    </div>
+  </PaddleProvider>
+</main>
+
       </div>
       
       
