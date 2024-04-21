@@ -17,6 +17,12 @@ export default async function ProtectedPage() {
 
   const { paddle } = usePaddleContext();
 
+  const openCheckout = () => {
+    paddle?.Checkout.open({
+      items: [{ priceId: 'PRICE_ID_GOES_HERE', quantity: 1 }],
+    });
+  };
+
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
@@ -28,6 +34,7 @@ export default async function ProtectedPage() {
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
             <DeployButton />
             <AuthButton />
+            <button onClick={openCheckout}>Open Paddle Checkout</button>
           </div>
         </nav>
       </div>
