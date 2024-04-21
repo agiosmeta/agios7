@@ -4,6 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
+import { usePaddleContext } from '@/components/paddle/PaddleConsumer'
+
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -14,6 +16,12 @@ export default async function ProtectedPage() {
 
   if (!user) {
     return redirect("/login");
+  }
+
+  const paddle = usePaddleContext()
+
+  if (paddle) {
+    //It's loaded do some stuff
   }
 
   return (
