@@ -5,31 +5,39 @@ import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 
+import { useEffect, useState } from 'react';
 import { initializePaddle, Paddle } from '@paddle/paddle-js';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
+// This component could be placed under `/app/routes` or `/app/components` depending on its usage.
 export function Checkout() {
   // Create a local state to store Paddle instance
-  const [paddle, setPaddle] = useState<Paddle>();
+  const [paddle, setPaddle] = useState<Paddle | null>(null);
 
   // Download and initialize Paddle instance from CDN
   useEffect(() => {
-    initializePaddle({ environment: 'sandbox', token: 'test_c2d0ccf5a6158d9dee25c51ce59 ' }).then(
+    initializePaddle({ environment: 'sandbox', token: 'test_c2d0ccf5a6158d9dee25c51ce59' }).then(
       (paddleInstance: Paddle | undefined) => {
         if (paddleInstance) {
           setPaddle(paddleInstance);
         }
-      },
+      }
     );
   }, []);
 
   // Callback to open a checkout
   const openCheckout = () => {
     paddle?.Checkout.open({
-      items: [{ priceId: 'pri_01hvkkzb0bzyszdt255f2kzhs6', quantity: 1 }],
+      items: [{ priceId: 'pri_01hvkkwfk47qzczez93g2rzxns', quantity: 1 }],
     });
   };
+
+  return (
+    <div>
+      <button onClick={openCheckout} disabled={!paddle}>
+        Checkout
+      </button>
+    </div>
+  );
 }
 
 
