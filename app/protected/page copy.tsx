@@ -4,17 +4,9 @@ import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
-import { PaddleProvider, PaddleContext } from '@/components/paddle/PaddleProvider';
-import React, { useContext } from 'react';
+import { PaddleProvider } from '@/components/paddle/PaddleProvider';
+import { usePaddleContext } from '@/components/paddle/ContextConsumer'
 
-function SomeComponent() {
-  const paddle = useContext(PaddleContext);
-
-  // Do something with `paddle` here
-
-  // Return a React element
-  return <div>{/* Your JSX here */}</div>;
-}
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -27,6 +19,9 @@ export default async function ProtectedPage() {
     return redirect("/login");
   }
 
+
+
+ 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
@@ -35,9 +30,13 @@ export default async function ProtectedPage() {
           user
         </div>
         
-        <PaddleProvider>
-          <SomeComponent />
-        </PaddleProvider>
+            (<PaddleProvider>
+              const paddle = usePaddleContext()
+
+if (paddle) {
+  //It's loaded do some stuff
+}
+            </PaddleProvider>)
         
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
@@ -51,9 +50,9 @@ export default async function ProtectedPage() {
         <Header />
         <main className="flex-1 flex flex-col gap-6">
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
-        </main>
+  
+                            </main>
       </div>
-
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
           Powered by{" "}
