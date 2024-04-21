@@ -5,7 +5,8 @@ import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import { PaddleProvider } from '@/components/paddle/PaddleProvider';
-import { usePaddleContext } from '@/components/paddle/ContextConsumer'
+
+
 
 
 export default async function ProtectedPage() {
@@ -20,7 +21,7 @@ export default async function ProtectedPage() {
   }
 
  
-  return (
+  return   (
     <div className="flex-1 w-full flex flex-col gap-10 items-center">
       <div className="w-full">
         <div className="py-6 font-bold bg-purple-950 text-center">
@@ -28,6 +29,19 @@ export default async function ProtectedPage() {
           user
         </div>
         
+        (<PaddleProvider>
+  
+  <button
+  onClick={() => {
+  Paddle.Checkout.open({
+  product: "pro_01htjgceg2d9wvmh2byctnrfb1",
+  });
+  }}
+  >
+  Buy
+  </button>
+  
+  </PaddleProvider>)
         
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
@@ -43,35 +57,6 @@ export default async function ProtectedPage() {
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
         </main>
       </div>
-      
-      
-      
-      (<PaddleProvider>
-              const paddle = usePaddleContext()
-
-if (paddle) {
-  //It's loaded do some stuff
-  <button
-  onClick={() => {
-    Paddle.Checkout.open({
-      product: "pro_01hvcx3fcwmw146qzvfy438yzx",
-    });
-  }}
->
-  Buy
-</button>
-
-
-
-
-}
-            </PaddleProvider>)
-      
-      
-      
-      
-      
-      
       
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
