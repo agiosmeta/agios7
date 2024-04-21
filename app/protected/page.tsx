@@ -21,10 +21,7 @@ export default async function ProtectedPage() {
 
   const paddle = usePaddleContext()
 
-  if (paddle) {
-    //It's loaded do some stuff
-  }
-
+ 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
@@ -45,7 +42,11 @@ export default async function ProtectedPage() {
         <main className="flex-1 flex flex-col gap-6">
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
         
-        
+          {paddle && (
+            <PaddleProvider>
+              Render the components.
+            </PaddleProvider>
+          )}
         
         
         </main>
@@ -56,10 +57,7 @@ export default async function ProtectedPage() {
       </div>
 
 
-      //Start Paddle
-        <PaddleProvider>
-    YOUR COMPONENTS
-  </PaddleProvider>
+ 
 
 
 
