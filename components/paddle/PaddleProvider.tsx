@@ -1,5 +1,3 @@
-'use client'
-
 import { createContext, useState } from 'react'
 import Script from 'next/script'
 
