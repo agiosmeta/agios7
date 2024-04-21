@@ -3,9 +3,9 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 import { PaddleProvider, PaddleContext } from '@/components/paddle/PaddleProvider';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 interface Product {
   id: string;
@@ -14,16 +14,17 @@ interface Product {
   // Add more properties here based on the actual structure of your product
 }
 
-export default async function ProtectedPage() {
+export default function ProtectedPage() {
   const supabase = createClient();
+  const router = useRouter();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/login");
-  }
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) {
+        router.push("/login");
+      }
+    });
+  }, []);
 
   return (
     <PaddleProvider>
