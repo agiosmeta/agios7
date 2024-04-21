@@ -51,11 +51,9 @@ export default function ProtectedPage() {
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
   
                             </main>
+        </div>
       </div>
-      </div>
-    </PaddleProvider>
-  );
-}
+  
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
           Powered by{" "}
@@ -66,9 +64,9 @@ export default function ProtectedPage() {
             rel="noreferrer"
           >
             Supabase
-          </a>
+            </a>
         </p>
       </footer>
-    
-  
-
+    </PaddleProvider>
+  );
+}
