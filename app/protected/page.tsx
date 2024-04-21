@@ -3,7 +3,7 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { PaddleProvider, PaddleContext } from '@/components/paddle/PaddleProvider';
 import { useContext, useEffect } from 'react';
 
