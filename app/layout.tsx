@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { PaddleProvider } from '@/components/paddle/PaddleProvider';
+
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,10 +24,7 @@ export default function RootLayout({
           {children}
         </main>
 
-//Start Paddle
-        <PaddleProvider>
-    YOUR COMPONENTS
-  </PaddleProvider>
+
 
       </body>
     </html>
