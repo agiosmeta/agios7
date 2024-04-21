@@ -5,7 +5,7 @@ import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import { PaddleProvider } from '@/components/paddle/PaddleProvider';
-import { usePaddleContext } from '@/components/paddle/ContextConsumer';
+import PaddleCheckout from '@/components/paddle/PaddleCheckout'; // Import the PaddleCheckout component
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -14,14 +14,6 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect("/login");
   }
-
-  const { paddle } = usePaddleContext();
-
-  const openCheckout = () => {
-    paddle?.Checkout.open({
-      items: [{ priceId: 'PRICE_ID_GOES_HERE', quantity: 1 }],
-    });
-  };
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -34,7 +26,6 @@ export default async function ProtectedPage() {
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
             <DeployButton />
             <AuthButton />
-            <button onClick={openCheckout}>Open Paddle Checkout</button>
           </div>
         </nav>
       </div>
@@ -43,12 +34,11 @@ export default async function ProtectedPage() {
         <Header />
         <main className="flex-1 flex flex-col gap-6">
           <h2 className="font-bold text-4xl mb-4">Next steps</h2>
-          {typeof window !== 'undefined' && paddle && (
-            <PaddleProvider>
-              {/* Render components that interact with Paddle here */}
-              <FetchDataSteps />
-            </PaddleProvider>
-          )}
+          <PaddleProvider>
+            {/* Render components that interact with Paddle here */}
+            <FetchDataSteps />
+            <PaddleCheckout /> {/* Render the PaddleCheckout component */}
+          </PaddleProvider>
         </main>
       </div>
 
