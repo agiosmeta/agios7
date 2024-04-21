@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
- The fastest way to build apps with Next.js and Supabase OGI
+ The fastest way to build apps with Next.js and Supabase OGIA
 </p>
 
 <p align="center">
