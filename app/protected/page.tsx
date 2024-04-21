@@ -43,11 +43,22 @@ export default async function ProtectedPage() {
         <main className="flex-1 flex flex-col gap-6">
   <PaddleProvider>
     <div className="flex justify-center items-center">
-      PADDLE COMPONENT
+      <button onClick={() => {
+        const { openCheckout } = Paddle();
+        openCheckout({
+          product: 'pri_01hvkkwfk47qzczez93g2rzxns', // replace with your product id
+        });
+      }}>
+        Open Paddle Checkout
+      </button>
     </div>
   </PaddleProvider>
 </main>
 
+      
+      
+      
+      
       </div>
       
       
