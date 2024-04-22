@@ -1,10 +1,32 @@
+## Project Structure
+agios7/
+├── components/
+│   └── paddle/
+│       ├── PaddleProvider.tsx      # React component for initializing Paddle.
+│       └── ContextConsumer.tsx     # React component for wrapping Paddle to any parts of the app.
+├── pages/
+│   └── protected/
+│       └── page.tsx                # This is where we call the Paddle checkout along with the authenticated user.
+├── types/
+│   └── paddle.d.ts                 # TypeScript definitions for Paddle
+├── .env.example                    # Example environment variable file
+├── .env.local.example              # Example local environment variable file
+├── .prettierrc.json                # Prettier formatter configuration
+├── components.json                 # UI components configuration
+├── middleware.ts                   # Next.js middleware file
+├── next-env.d.ts                   # Next.js environment type definitions
+├── package.json                    # Project dependencies and scripts
+└── pnpm-lock.yaml                  # Lockfile for package manager
+
+
+## Vercel Supabase Template
 <a href="https://demo-nextjs-with-supabase.vercel.app/">
   <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
   <h1 align="center">Next.js and Supabase Starter Kit</h1>
 </a>
 
 <p align="center">
- The fastest way to build apps with Next.js and Supabase OGIA
+ The fastest way to build apps with Next.js and Supabase
 </p>
 
 <p align="center">
