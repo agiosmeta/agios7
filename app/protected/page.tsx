@@ -1,3 +1,5 @@
+// Filename: page.client.tsx
+
 import { useEffect, useState } from 'react';
 import DeployButton from "@/components/DeployButton";
 import AuthButton from "@/components/AuthButton";
@@ -6,12 +8,12 @@ import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import { PaddleProvider } from '@/components/paddle/PaddleProvider';
 import { usePaddleContext } from '@/components/paddle/ContextConsumer';
-import { User } from '@supabase/supabase-js'; // Ensure you have the correct type import
+import { User } from '@supabase/supabase-js'; // Make sure this type matches your actual user type
 
 export default function ProtectedPage() {
   const supabase = createClient();
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);  // Explicitly state that user can be User or null
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,14 +22,14 @@ export default function ProtectedPage() {
       if (!user) {
         router.push("/login");
       } else {
-        setUser(user); // No type error here, since setUser now expects User | null
+        setUser(user);
       }
     };
 
     fetchUser();
   }, [supabase, router]);
 
-  if (!user) return null; // Display nothing or a loading indicator while user is null
+  if (!user) return null;
 
   return (
     <PaddleProvider>
@@ -48,7 +50,6 @@ export default function ProtectedPage() {
           <Header />
           <main className="flex-1 flex flex-col gap-6">
             <h2 className="font-bold text-4xl mb-4">Next steps</h2>
-            {/* Additional content or functionality related to Paddle could be called here */}
           </main>
         </div>
 
